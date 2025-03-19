@@ -1,21 +1,26 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 import easyocr
-import os  
-from dotenv import load_dotenv 
+import numpy as np
+import cv2
+from io import BytesIO
+from dotenv import load_dotenv
+import os
 
+reader = easyocr.Reader(["en"])
 
-def ocr_image(image_path, llm):
-    reader = easyocr.Reader(['en'])
-    result = reader.readtext(image_path)
-    response = [detection[1] for detection in result]
+def ocr_image(image_data: BytesIO) -> str:
+    image_bytes = np.frombuffer(image_data.getvalue(), dtype=np.uint8)
+    image = cv2.imdecode(image_bytes, cv2.IMREAD_COLOR)
 
-    system = """You are given a text from a legal. Correct this report grammatically.
-    Do not add anything extra. Do not remove anything. Do not change the meaning of the text. text : {response}"""
+    if image is None:
+        raise ValueError("Error decoding image. Make sure the uploaded file is a valid image.")
 
-    result = llm.invoke(system).content
+    results = reader.readtext(image)
     
-    return " ".join(response)
+    extracted_text = " ".join([text for (_, text, _) in results])  
+    return extracted_text
+
 
 if __name__ == "__main__":
     load_dotenv()
