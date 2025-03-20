@@ -12,6 +12,16 @@
   z-index: 1000;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  border-radius: 50%; /* Makes it circular */
+  margin-right: 10px;
+}
+
 .NavLinks a {
   margin-left: 20px;
   color: white;
