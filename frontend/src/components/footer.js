@@ -12,6 +12,6 @@ export default function Footer() {
           <a href="/privacy-policy">Privacy Policy</a>
         </div>
       </footer>
-    );mm
+    );
   }
   

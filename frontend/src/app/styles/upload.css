@@ -1,10 +1,11 @@
 .dropzone {
     width: 60%;
-    max-width: 500px;
-    height: 200px;
+    max-width: 600px;
+    height: 220px;
     border: 2px dashed #ffffff;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -14,16 +15,135 @@
     color: #ffffff;
     background: rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .dropzone:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
+.upload-btn {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 15px auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+}
+
+.upload-btn:disabled {
+    background-color: #3a923d;
+    cursor: not-allowed;
+}
+/* Smooth processing animation */
+.upload-btn.loading {
+    background-color: #3a923d;
+    cursor: not-allowed;
+    position: relative;
+}
+
+/* Loading Spinner */
+.upload-btn.loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    border-top: 3px solid white;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+}
+
+/* Button Pulsing Effect */
+.upload-btn.loading::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    animation: pulse 1.5s infinite;
+}
+
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+.spinner.large {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-animation {
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+}
+
+/* Smooth Fade-in Effect */
+.fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Keyframes for Pulsing */
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 0; }
+}
+
+/* Result Container */
+.result-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    color: white;
+    width: 60%;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* Upload text */
+.upload-text span {
+    text-decoration: underline;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* File Preview */
 .preview-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
@@ -31,20 +151,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 10px;
+    justify-content: center;
     text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 150px;
 }
 
-.preview img {
+.preview-img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid white;
+    border-radius: 5px;
 }
 
-.preview p {
-    color: white;
-    font-size: 14px;
+/* PDF Preview */
+.pdf-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.pdf-preview p {
     margin-top: 5px;
+    font-size: 14px;
+    color: white;
 }
