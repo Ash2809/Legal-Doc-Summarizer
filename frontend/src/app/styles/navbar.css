@@ -1,34 +1,50 @@
 .navbar {
-  position: fixed;  
-  top: 0;
-  left: 0;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background: #333;
+  padding: 15px 30px;
+  background: #222;
   color: white;
-  z-index: 1000;
+  position: fixed; /* Fix navbar at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure full width */
+  z-index: 1000; /* Keep it above other elements */
 }
 
 .logo-container {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
-.logo {
-  border-radius: 50%; /* Makes it circular */
-  margin-right: 10px;
+.logo-container h2 {
+  font-size: 22px;
+  margin: 0;
 }
 
-.NavLinks a {
-  margin-left: 20px;
+.NavLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.NavLinks a, .NavLinks button {
+  background: none;
+  border: none;
   color: white;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 12px;
+  transition: 0.3s;
 }
 
-.NavLinks a:hover {
-  text-decoration: underline;
+.NavLinks button:hover, .NavLinks a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* Add spacing to avoid content overlapping the navbar */
+body {
+  padding-top: 80px;
 }

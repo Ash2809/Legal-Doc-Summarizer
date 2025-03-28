@@ -1,0 +1,115 @@
+/* Modal Overlay (with blur effect) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    backdrop-filter: blur(8px); /* Blurred effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Modal Box */
+.modal-content {
+    background: rgba(0, 0, 0, 0.73); /* Dark semi-transparent background */
+    padding: 25px;
+    border-radius: 12px;
+    width: 360px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Heading */
+.modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #ffffff; /* White text for contrast */
+}
+
+/* Input Fields */
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.2); /* Transparent input background */
+    color: #fff; /* White text */
+}
+
+.modal-content input::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Light text for better readability */
+}
+
+.modal-content input:focus {
+    border-color: #007bff;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 12px;
+    background: #ffd900;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+.modal-content button:hover {
+    background: #ffd900;
+}
+
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 50% !important;
+    font-size: 16px !important;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.close-btn:hover {
+    background: #cc0000;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
