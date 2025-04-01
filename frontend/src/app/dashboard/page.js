@@ -15,7 +15,6 @@ export default function Upload() {
     const [result, setResult] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    // Handle file drop
     const onDrop = useCallback((acceptedFiles, rejectedFiles) => {
         if (rejectedFiles.length > 0) {
             alert("Invalid file! Only PDF or images under 5MB are allowed.");
@@ -25,20 +24,19 @@ export default function Upload() {
         const file = acceptedFiles[0];
         setFiles([
             Object.assign(file, {
-                preview: URL.createObjectURL(file), // Generate preview URL
+                preview: URL.createObjectURL(file),
             }),
         ]);
-        setResult(null); // Reset previous result
+        setResult(null);
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
         accept: { "image/*": [], "application/pdf": [] },
         multiple: false,
-        maxSize: 5 * 1024 * 1024, // 5MB limit
+        maxSize: 5 * 1024 * 1024, 
     });
 
-    // Function to upload file
     const handleUpload = async () => {
         if (files.length === 0) {
             alert("Please select a file to upload.");
@@ -74,7 +72,6 @@ export default function Upload() {
             <Background />
             <h1>Upload & Analyze Your Legal Documents</h1>
 
-            {/* Dropzone Area */}
             <div className="dropzone" {...getRootProps()}>
                 <input {...getInputProps()} />
                 <FiUploadCloud size={50} color="#fff" className="upload-icon" />
@@ -84,7 +81,6 @@ export default function Upload() {
                 <p className="file-info">Accepted: PDF, Images (Max: 5MB)</p>
             </div>
 
-            {/* Preview Section */}
             <div className="preview-container">
                 {files.length > 0 && (
                     <div className="preview fade-in">
@@ -100,7 +96,6 @@ export default function Upload() {
                 )}
             </div>
 
-            {/* Upload Button */}
             <button className="upload-btn" onClick={handleUpload} disabled={loading}>
                 {loading ? (
                     <>
@@ -112,7 +107,6 @@ export default function Upload() {
                 )}
             </button>
 
-            {/* Processing Animation */}
             {loading && (
                 <div className="loading-animation">
                     <FaSpinner className="spinner large" />
@@ -120,7 +114,6 @@ export default function Upload() {
                 </div>
             )}
 
-            {/* Display Results */}
             {result && (
                 <div className="result-container fade-in">
                     <h2>Extracted Text:</h2>

@@ -20,15 +20,13 @@ export default function AuthModal({ isOpen, onClose, mode, onLoginSuccess }) {
                 const userCredential = await signInWithEmailAndPassword(auth, email, password);
                 console.log("User Logged In:", userCredential.user);
                 
-                // Store user info in local storage
                 localStorage.setItem("user", JSON.stringify(userCredential.user));
                 
-                onLoginSuccess(); // Call only on successful login
+                onLoginSuccess();
             } else {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 console.log("User Registered:", userCredential.user);
 
-                // Store user info in local storage
                 localStorage.setItem("user", JSON.stringify(userCredential.user));
                 
                 onLoginSuccess();

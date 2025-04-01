@@ -16,7 +16,14 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  border-radius: 80px;
 }
+
+.logo {
+  border-radius: 50%; 
+  object-fit: cover; 
+}
+
 
 .logo-container h2 {
   font-size: 22px;
