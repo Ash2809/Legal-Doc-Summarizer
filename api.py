@@ -7,6 +7,8 @@ from src.pdf_reader import extract_text_from_pdf
 from src.ocr import ocr_image
 from src.summarizer import summarize_text
 from io import BytesIO
+from fastapi.middleware.cors import CORSMiddleware
+
 
 load_dotenv()
 GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -14,6 +16,13 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 llm = ChatGoogleGenerativeAI(api_key=GOOGLE_API_KEY, model="gemini-1.5-flash", temperature=0.1)
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.post("/process_pdf/")
 async def process_pdf(file: UploadFile = File(...)):
